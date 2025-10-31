@@ -3,6 +3,7 @@ services:
   frontend:
     container_name: frontend_react_app
     build: ./frontend
+    image: ghcr.io/ehn7/devops-project-backend:latest
     ports:
       - '80:80'
   db:
@@ -23,6 +24,7 @@ services:
   backend:
     container_name: backend_flask_app
     build: ./backend
+    image: ghcr.io/ehn7/devops-project-backend:latest
     ports:
       - '5000:5000'
     volumes:
