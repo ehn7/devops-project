@@ -3,7 +3,7 @@ services:
   frontend:
     container_name: frontend_react_app
     build: ./frontend
-    image: ghcr.io/ehn7/devops-project-backend:latest
+    image: ghcr.io/ehn7/devops-project-frontend:latest
     ports:
       - '80:80'
   db:
