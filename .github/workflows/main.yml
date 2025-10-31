@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # faz o checkout do código
-      - uses: actions/checkout@4
+      - uses: actions/checkout@v4
       # github precisa saber usar o docker compose, então a ação:
       - uses: docker/setup-buildx-action@v3
       - name:
