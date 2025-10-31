@@ -1,9 +1,11 @@
 import os
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 # Inicializa a aplicação Flask
 app = Flask(__name__)
+CORS(app)
 
 # --- Configuração do Banco de Dados ---
 

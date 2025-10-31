@@ -1,5 +1,10 @@
 version: '3.8'
 services:
+  frontend:
+    container_name: frontend_react_app
+    build: ./frontend
+    ports:
+      - '80:80'
   db:
     image: mysql:8.0
     container_name: mysql_db
