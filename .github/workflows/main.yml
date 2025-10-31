@@ -19,7 +19,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build e Push das Imagens
-        uses: docker compose build --push
+        run: docker compose build --push
         with:
           context: .
           push: true
