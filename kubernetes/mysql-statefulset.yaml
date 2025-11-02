@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet # é usado para volumes persistentes, como banco de dados. não pode ser apagado e recriado diversas vezes como os pods do backend e frontend
+metadata:
+  name: mysql-statefulset
+spec:
+  # o service que usaremos para essa rede
+  serviceName: "mysql-service" 
+  replicas: 1 # para uma database simples, basta uma réplica
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+      # (Precisaríamos do 'imagePullSecrets' aqui também)
+      containers:
+      - name: mysql
+        image: mysql:8.0 # imagem oficial do mysql
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_DATABASE
+          value: "minha_lista_de_tarefas"
+  volumeClaimTemplates: # diz ao kubernetes para criar um volume para cada pod
+  - metadata:
+      name: mysql-persistent-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi

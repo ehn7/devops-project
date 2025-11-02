@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend # precisa ter esta label para se comunicar com o service
+  template:
+    metadata:
+      labels:
+        app: frontend # pod recebe a label frontend
+    spec:
+      imagePullSecrets:
+      - name: ghcr-secret
+      containers:
+      - name: frontend-container
+        image: ghcr.io/ehn7/devops-project-frontend:latest # imagem publicada no github atraves do actions
+        ports:
+        - containerPort: 80 # informa ao kubernetes que escuta a porta 80

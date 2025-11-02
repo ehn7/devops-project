@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service # nome que o backend usara como db_host
+spec:
+  type: ClusterIP # é um servico que fornece um endereco ip interno para que outros clusters possam se comunicar com ele
+  ports:
+  - port: 3306 # porta que o service escuta
+    targetPort: 3306 # porta onde o mysql escuta
+  selector: # label que ele procura
+    app: mysql
